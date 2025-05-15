@@ -1,7 +1,7 @@
-# WA_MPXV: Washington Focused MPXV Nextstrain Build
+# wa_MPXV: Washington Focused MPXV Nextstrain Build
 
 ## Build Overview
-- **Build Name**: WA_MPXV
+- **Build Name**: wa_MPXV
 - **Pathogen/Strain**: MPXV/Monkeypox Virus/MPOX
 - **Scope**: Whole genome, IIb clade
 - **Purpose**: This repository contains the Nextstrain build for Washington State genomic surveillance of MPXV clade IIb. The purpose of this Nextstrain build is to monitor and analyze the genetic variations and spread of the MPXV virus within the Washington state region. By utilizing genomic sequencing data, this build helps track the lineage and evolution of the virus, facilitating early detection of any emerging variants.
@@ -137,9 +137,11 @@ The file structure of the repository is as follows with `*`" folders denoting fo
 - `.snakemake/`: This folder is created by the Snakemake workflow management system and contains important components that assist in the execution and management of data workflows. The contents help manage the workflow's execution efficiently, ensuring reproducibility and tracking changes throughout the data processing pipeline. 
 - `bin/`: Inert files that outline Slack tokens that alert users on Slack of when the build is starting, if an error occurs, where it is being deployed and if it was successful. 
 - `build-configs/`: Inert files and folders that have been included for automating Nextstrain builds.
-- `data/`: Contains ingested compressed metadata and sequences folders that are then decompressed into their respected .tsv and .fasta files. 
-- `defaults/`: Folder contains default parameters, such as:
-  - `clade-i/`: Folder containing the workflow for building a clade I focused build.
+- `data/`: Contains ingested compressed metadata and sequences folders that are then decompressed into their respected .tsv and .fasta files.
+- <details><summary><code>defaults/</code>: Folder contains default parameters, such as:</summary>
+
+  - <details><summary><code>clade-i/</code>: Folder containing the workflow for building a clade I focused build.</summary>
+
     - `auspice_config.JSON`: This file provides settings and parameters that define how the data is visualized and interacted with in Auspice. It allows users to customize the layout, filters, colors, and other visualization aspects according to their needs.
     - `config.YAML`: A configuration file used in applications and scripts to manage settings and parameters in an organized and structured manner.
     - `genome_annotation.gff3`: Gene annotation file for sequence-region KJ642613.1 1 196442.
@@ -148,21 +150,23 @@ The file structure of the repository is as follows with `*`" folders denoting fo
     - `reference.fasta`: The FASTA format is a text-based format used in bioinformatics and biochemistry to represent nucleotide sequences or amino acid (protein) sequences. This FASTA file is for the reference sequence "KJ642613.1 Monkeypox virus strain Congo_8, complete genome". 
     - `reference.gb`: GB files are a standard plain-text format used for storing biological sequence information, protein sequences and associated metadata. This GB file is for the reference sequence "KJ642613.1 Monkeypox virus strain Congo_8, complete genome".
     - `tree_mask.tsv`: A tree mask file is used to exclude specific parts of a phylogenetic tree from analysis. This can be useful for various reasons, such as removing poorly sequenced regions, excluding outliers, or focusing on specific clades or lineages. The tree mask file typically contains a list of nodes or branches that should be ignored during the tree-building process.
+  - <details><summary><code>hmpxv1/</code>: Folder containing the workflow for building a clade IIb focused build.</summary>
 
-  - `hmpxv1/`: Folder containing the workflow for building a clade IIb focused build.
     - `auspice_config.JSON`: This file provides settings and parameters that define how the data is visualized and interacted with in Auspice. It allows users to customize the layout, filters, colors, and other visualization aspects according to their needs.
     - `config.YAML`: A configuration file used in applications and scripts to manage settings and parameters in an organized and structured manner.
-    - `include.txt`: An include file that contains sequences MK783030 and MK783032. 
+    - `include.txt`: An include file that contains sequences MK783030 and MK783032.
 
-  - `hmpxv1_big/`: Folder containing the workflow for building a B.1 lineage focused build. 
+  - <details><summary><code>hmpxv1_big/</code>: Folder containing the workflow for building a B.1 lineage focused build.</summary>
+
     - `auspice_config.JSON`: This file provides settings and parameters that define how the data is visualized and interacted with in Auspice. It allows users to customize the layout, filters, colors, and other visualization aspects according to their needs.
     - `config.YAML`: A configuration file used in applications and scripts to manage settings and parameters in an organized and structured manner.
     - `include.txt`: An include file that contains sequence OP890401. 
-  
-  - `mpxv/`: Folder containing the workflow for building an MPOX build across clades.  
+
+  - <details><summary><code>mpxv/</code>: Folder containing the workflow for building an MPOX build across clades.</summary>  
+
     - `auspice_config.JSON`: This file provides settings and parameters that define how the data is visualized and interacted with in Auspice. It allows users to customize the layout, filters, colors, and other visualization aspects according to their needs.
     - `config.YAML`: A configuration file used in applications and scripts to manage settings and parameters in an organized and structured manner.
-    - `include.txt`: An include file that is blank.
+    - `include.txt`: An include file that is blank.</details>
 
     - `clades.tsv`: Nucleotide coordinates for reference sequence. 
     - `color_ordering.tsv`: Georgraphical settings for coloring.
@@ -177,24 +181,46 @@ The file structure of the repository is as follows with `*`" folders denoting fo
     - `reference.fasta`: The FASTA format is a text-based format used in bioinformatics and biochemistry to represent nucleotide sequences or amino acid (protein) sequences. This FASTA file is for the reference sequence "NC_063383.1 Monkeypox virus, complete genome". 
     - `reference.gb`: GB files are a standard plain-text format used for storing biological sequence information, protein sequences and associated metadata. This GB file is for the reference sequence "NC_063383.1 Monkeypox virus, complete genome".
     - `tree_mask.tsv`: A tree mask file is used to exclude specific parts of a phylogenetic tree from analysis. This can be useful for various reasons, such as removing poorly sequenced regions, excluding outliers, or focusing on specific clades or lineages. The tree mask file typically contains a list of nodes or branches that should be ignored during the tree-building process.
-- `example_data/`: Folder containing example data for testing out a build run. 
+    </details>
+ </details>
+</details>
+</details>
+
+- <details><summary><code>example_data/</code>: Folder containing example data for testing out a build run.</summary> 
+
   - `metadata.tsv`: This file contains descriptive information about the genomic sequences being analyzed. 
-  - `sequences.fasta`: File that contains genomic sequence data for the genomic sequences being analyzed.
+  - `sequences.fasta`: File that contains genomic sequence data for the genomic sequences being analyzed.</details>
+  </details>
+ </details>
+</details>
+</details>
 
 - `logs/`: A folder created by Snakemake that is used to store log files that capture detailed information about the execution of the workflow. This folder is essential for monitoring, debugging, and optimizing workflow runs.  
 
-- `profiles/`: This folder is created by Snakemake and is vital for organizing and managing environment-specific configurations, enabling users to run workflows efficiently and consistently across different computing setups. It enhances the flexibility and usability of Snakemake, particularly in multi-user environments or when transitioning between local and distributed computing resources.
-  - `default/`
-    - `config.YAML`: Configuration options that enhance the flexibility, usability, and robustness of the Snakemake workflow by optimizing resource use, facilitating troubleshooting, and ensuring reliability in task execution.
+- <details><summary><code>profiles/</code>: This folder is created by Snakemake and is vital for organizing and managing environment-specific configurations, enabling users to run workflows efficiently and consistently across different computing setups. It enhances the flexibility and usability of Snakemake, particularly in multi-user environments or when transitioning between local and distributed computing resources.</summary>
 
-- `rules/`: This folder is created by Snakemake and is a dedicated directory for rule definitions relating to your workflow.
+  - <details><summary><code>default/</code>:</summary>
+
+    - `config.YAML`: Configuration options that enhance the flexibility, usability, and robustness of the Snakemake workflow by optimizing resource use, facilitating troubleshooting, and ensuring reliability in task execution.
+</details>
+ </details>
+</details>
+</details>
+
+- <details><summary><code>rules/</code>: This folder is created by Snakemake and is a dedicated directory for rule definitions relating to your workflow.</summary>
+
   - `annotate_phylogeny.smk`: A Snakemake file that creates additional annotations for the phylogenetic tree. 
   - `construct_phylogeny.smk`: A Snakemake file that constructs the phylogenetic tree.
   - `export.smk`: A Snakemake file that collects the phylogenetic tree and annotations to
 export a Nextstrain dataset. 
   - `prepare_sequences.smk`: A Snakemake file that prepares sequences for constructing the phylogenetic tree.
+  </details>
+ </details>
+</details>
+</details>
 
-- `scripts/`: This folder is contains Python scripts dedicated to the workflow. 
+- <details><summary><code>scripts/</code>: This folder is contains Python scripts dedicated to the workflow.</summary>
+
   - `assign-clades-via-metadata.py`: Uses provided metadata to assign clades to internal nodes and those with missing metadata.
   - `assign-colors.py`: Assigns colors to a variety of parameters if not already outlined in config files. 
   - `clades_renaming.py`: Assigns clades and outbreak parameters to data notes. 
@@ -204,21 +230,31 @@ export a Nextstrain dataset.
   - `mutation_context.py`: Python script designed to analyze the genomic context of mutations within a set of sequences.
   - `remove_timeinfo.py`: Python script that returns the sample date in numeric form. 
   - `reverse_reversed_sequences.py`: Python script designed to manipulate DNA or RNA sequences by reversing them and then reversing the order of the nucleotides within each sequence.
-  - `set_final_strain_name.py`: Python scripts that swaps out the strain names in the Auspice JSON with the final strain name.  
+  - `set_final_strain_name.py`: Python scripts that swaps out the strain names in the Auspice JSON with the final strain name.
+  </details>
+ </details>
+</details>
+</details>  
 
-- `wa_mpxv/`: Folder containing the workflow for building a Washington focused MPXV Clade IIb build.
+- <details><summary><code>wa_mpxv/</code>: Folder containing the workflow for building a Washington focused MPXV Clade IIb build.</summary>
+
   - `.git/`: This folder is created when you initialize a Git repository and contains all the necessary files and data that Git uses to manage version control for the project.
   - `README.md`: ReadMe file dedicated to this build. 
   - `wa_auspice_config_hmpxv1.JSON`: This file provides settings and parameters that define how the data is visualized and interacted with in Auspice. It allows users to customize the layout, filters, colors, and other visualization aspects according to their needs.
   - `wa_config_hmpxv1.YAML`: Configuration options that enhance the flexibility, usability, and robustness of the Snakemake workflow by optimizing resource use, facilitating troubleshooting, and ensuring reliability in task execution.
   - `wa_description.md`: Discussion of the build and acknowledgements.   
+   </details>
+ </details>
+</details>
+</details>   
  
 
 ## Expected Outputs
 After successfully running the build there will be two output folders containing the build results.
 
 - `auspice/` folder contains `mpox_wa.JSON` and `mpox_wa_root_sequence.JSON`
-- `results/` folder contains `hmpxv1_wa/` which contains the following files:
+- <details><summary><code>results/</code> folder contains <code>hmpxv1_wa/</code> which contains the following files:</summary>
+
   - `aa_nuts.JSON`: Amino acid genome annotations.
   - `aligned.FASTA`: FASTA file of aligned sequences.
   - `branch_lengths.JSON`: Branch lengths of sequences. 
@@ -249,10 +285,41 @@ After successfully running the build there will be two output folders containing
   - `tree_root-sequence.JSON`: Phylogenetic tree structure that explicitly includes a designated root sequence, which acts as a reference point for understanding the evolutionary relationships among different sequences of a pathogen. This file provides details about the branching patterns, node relationships, and branch lengths, all anchored to the specified root sequence that represents the common ancestor of the lineages being analyzed.
   - `wa_filter.txt`: Log file of samples that were filtered out of the Washington build due to the filtering schema.
   - `wa_strains.txt`: List of samples from the Washington build after filtering has been applied.
+   </details>
+ </details>
+</details>
+</details>
 
 ## Customization for Local Adaptation
-This build can be customized for use by other states, cities, counties, or countries. By utilizing the Washington focused folder model, `mpox/phylogenetic/wa_mpxv`, and altering specifications within the files to meet your needs, the Global MPXV Nextstrain build can be tailored to fit your requirements.
+This build can be customized for use by other states, cities, counties, or countries. By utilizing the Washington focused folder model, `mpox/phylogenetic/wa_mpxv`, and altering specifications within the files to meet your needs, the Global MPXV Nextstrain build can be tailored to fit your requirements. The following steps are recommendations on how to easily alter the build to meet your adaptations:
+- Create a folder for your build in `mpox/phlogenetic`. 
+- Copy over the files in `mpox/phylogenetic/wa_mpxv` into your folder.
+- In your folder, start to alter the following files to meet your needs. Use the dropdown arrows to expand on what areas of the file you may want to change:
+  - <details><summary><code> wa_auspice_config_hmpxv1.json</code>: Alter how your build will look.</summary> 
+    - <code>title</code>
+    <br>
+    - <code>maintainers</code>
+    <br>
+    - <code>build_url</code></details>
+   
+  - <details><summary><code> wa_config_hmpxv1.yaml</code>: Alter the filtering and sampling of your build.</summary>
+      - <code>auspice_config</code>
+      <br>
+      - <code>description</code>
+      <br>
+      - <code>build_name</code>
+      <br>
+      - <code>auspice_name</code>
+      <br>
+      - <code>filter</code>
+      <br>
+      - <code>subsample</code>
+      <br>
 
+  - `wa_description.md`: Alter your builds description
+
+## Contributing
+For any questions please submit them to our [Discussions] https://github.com/orgs/NW-PaGe/discussions/categories/q-a page otherwise software issues and requests can be logged as a Git [Issue] https://github.com/NW-PaGe/wa_mpxv/issues.
 ## Contributing
 For any questions please submit them to our [Discussions] https://github.com/orgs/NW-PaGe/discussions/categories/q-a page otherwise software issues and requests can be logged as a Git [Issue](insert link here).
 
