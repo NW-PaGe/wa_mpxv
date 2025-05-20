@@ -1,0 +1,53 @@
+name: Fetch and ingest (on branch)
+
+on:
+  # Manually triggered using GitHub's UI
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Specific container image to use for build (will override the default of "nextstrain build")'
+        required: false
+
+
+jobs:
+  set_config_overrides:
+    runs-on: ubuntu-latest
+    steps:
+      - id: upload_config
+        run: |
+          # Create JSON string for the nested upload config
+          GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
+          S3_DST="s3://nextstrain-data/files/workflows/mpox/branch/${GITHUB_BRANCH}"
+          UPLOAD_CONFIG=$(jq -cn --arg S3_DST "$S3_DST" '{"s3": {"dst": $S3_DST }}')
+
+          echo "upload_config=$UPLOAD_CONFIG" >> "$GITHUB_OUTPUT"
+    outputs:
+      upload_config: ${{ steps.upload_config.outputs.upload_config }}
+
+  fetch-and-ingest:
+    needs: [set_config_overrides]
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
+    with:
+      runtime: aws-batch
+      env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
+        GITHUB_RUN_ID: ${{ github.run_id }}
+        SLACK_CHANNELS: ${{ vars.TEST_SLACK_CHANNEL }}
+        UPLOAD_CONFIG: ${{ needs.set_config_overrides.outputs.upload_config }}
+      run: |
+        nextstrain build \
+          --aws-batch \
+          --detach \
+          --no-download \
+          --cpus 32 \
+          --memory 64gib \
+          --env GITHUB_RUN_ID \
+          --env SLACK_TOKEN \
+          --env SLACK_CHANNELS \
+          ingest \
+            nextstrain_automation \
+              --configfiles build-configs/nextstrain-automation/config.yaml \
+              --config trigger_rebuild=False send_slack_notifications=True upload="$UPLOAD_CONFIG"
