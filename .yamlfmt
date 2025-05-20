@@ -1,8 +1,0 @@
-exclude:
-  - ingest/
-  - nextstrain-pathogen.yaml
-formatter:
-  type: basic
-  line_ending: lf
-  retain_line_breaks: true
-  max_line_length: 120
